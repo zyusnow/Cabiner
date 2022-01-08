@@ -1,0 +1,8 @@
+
+.bg {
+    width: 100%;
+    background-image: url(../../images/cabin/bg.jpg);
+    background-size: cover;
+    background-position: center left;
+    background-repeat: no-repeat;
+}

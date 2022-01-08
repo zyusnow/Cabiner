@@ -32,7 +32,7 @@ function ProfileButton({ user }) {
   return (
     <>
       <button onClick={openMenu}>
-        <img className="usericon" src="../../../user.png" onClick={openMenu}></img>
+        <img className="usericon" alt="img" src="../../../user.png" onClick={openMenu}></img>
       </button>
       {showMenu && (
         <ul className="profile-dropdown">
