@@ -1,0 +1,78 @@
+/* .signup_btn_home{
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    padding-right: 50px;
+    padding-bottom: 50px;
+}
+
+.login_container{
+    width: 100%;
+    text-align:center;
+    margin-bottom: 30px;
+}
+
+.login_title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(230, 227, 227);
+    padding-bottom: 20px;
+    padding-top: 20px;
+    color: rgb(27, 27, 27);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+}
+
+.login_subTitle {
+    padding-top: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.login_form_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login_form input {
+    width: 80%;
+    font-size: 16px;
+    background-color: transparent;
+    margin-bottom: 15px;
+    padding: 0px;
+    margin:10px;
+    color:rgb(80, 79, 79);
+    line-height: 48px;
+    border: 0.8px solid rgb(197, 197, 197);
+    border-radius: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.login_btn{
+    width: 88%;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    line-height: 50px;
+    border-radius: 8px;
+    border:none;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(to right, rgb(211, 106, 20) 0%, rgb(228, 125, 29) 50%, rgb(215, 106, 4) 100%) !important;
+}
+
+.addition{
+  display: flex;
+  justify-content: center;
+  color:rgb(109, 107, 107);
+  font-size: 14px;
+
+}
+
+.link{
+    padding-left: 5px;
+    color:rgb(109, 107, 107);
+    font-size: 14px;
+} */

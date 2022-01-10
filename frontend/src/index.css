@@ -1,1 +1,7 @@
 /* TODO Add site wide styles */
+:root{
+    font-family: "Open Sans", sans-serif;
+    background-image:url("./images/cabin/bg_3.jpg");
+    background-size: cover;
+    height: 100%;
+}

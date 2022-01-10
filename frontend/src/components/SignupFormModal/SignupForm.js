@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import './SignupForm.css';
+import { Link } from "react-router-dom";
+import '../LoginFormModal/LoginForm.css';
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -29,48 +30,52 @@ function SignupFormModal() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
-      <label>
-        Email
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Username
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Confirm Password
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Sign Up</button>
-    </form>
+    <div className='login_container'>
+      <div className='login_title'>Log in or sign up</div>
+      <div className='login_subTitle'>Welcome to Cabiner</div>
+      <div className='login_form_container'>
+        <form className='login_form' onSubmit={handleSubmit}>
+          <ul>
+            {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+          </ul>
+          <div className='login_input'>
+            <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            placeholder='email'
+            />
+            <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+            placeholder='username'
+            />
+            <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            placeholder='password'
+            />
+            <input
+            type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            placeholder='confirm password'
+            />
+          </div>
+          <button className='login_btn'type="submit">Sign Up</button>
+          <div className='addition'>
+            Already have a account?
+            <Link className='link' to="/login">Log in</Link>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 }
 
