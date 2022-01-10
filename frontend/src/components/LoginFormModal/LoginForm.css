@@ -75,7 +75,7 @@
     border-radius: 8px;
     border:none;
     color: rgb(255, 255, 255);
-    background: linear-gradient(to right, rgb(211, 106, 20) 0%, rgb(228, 125, 29) 50%, rgb(215, 106, 4) 100%) !important;
+    background: linear-gradient(to right, rgb(211, 106, 20) 0%, rgb(228, 125, 29) 50%, rgb(215, 106, 4) 100%);
 }
 
 .demo{
