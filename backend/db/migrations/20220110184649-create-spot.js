@@ -10,46 +10,58 @@ module.exports = {
       },
       userId: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: { model: 'Users', key: 'id' }
       },
       address: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING(200)
       },
       city: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       state: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       country: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       lat: {
+        allowNull: false,
         type: Sequelize.DECIMAL
       },
       ing: {
+        allowNull: false,
         type: Sequelize.DECIMAL
       },
       name: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(50)
       },
       price: {
+        allowNull: false,
         type: Sequelize.DECIMAL
       },
       zipcode: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       description: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING(1000)
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('now'),
       }
     });
   },
