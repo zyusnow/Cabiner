@@ -29,14 +29,6 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING(50)
       },
-      lat: {
-        allowNull: false,
-        type: Sequelize.DECIMAL
-      },
-      ing: {
-        allowNull: false,
-        type: Sequelize.DECIMAL
-      },
       name: {
         allowNull: false,
         type: Sequelize.STRING(50)

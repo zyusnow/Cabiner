@@ -2,7 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const { User, Spot } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
@@ -43,4 +43,15 @@ router.post(
     });
   }),
 );
+
+
+// get one user's page
+router.get('/:userId/spots', asyncHandler(async function(req, res){
+  const userId = parseInt(req.params.userId, 10);
+  const spots = await Spot.findAll({where: {userId}})
+  return res.json({spots});
+}))
+
+
+
 module.exports = router;

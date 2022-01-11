@@ -18,8 +18,6 @@ module.exports = {
           zipcode: 98288,
           price: "460",
           userId: 1,
-          lat: 47.71255,
-          ing: -121.31474,
           description: `Our A-frame is settled in the private cabin community of Timber Lane Village just minutes from Steven's Pass ski resort and some of the best hiking spots in the central cascades.
           The space: Our cabin community is just off highway 2. You can see from our reviews that most guests find our place quiet and only a couple have complained about the highway noise. We just want to point this out for full disclosure :-)
           Guest access: On the day of your check-in, the owner will text or message your the access codes for the alarm and key lock box.`
@@ -33,8 +31,6 @@ module.exports = {
           zipcode: 98382,
           price: "170",
           userId: 1,
-          lat: 48.05408,
-          ing: -122.98732,
           description: `Elliott's Cabin is a log cabin snuggled in the cascade foothills, but only 45 minutes from downtown Seattle. We are 15 minutes from Snoqualmie Falls and close to numerous breathtaking hikes. Sleep in a snug loft and enjoy the convenience of a full kitchen.
           Elliott's Cabin is in a wooded setting across from a lake. We have a canoe you may carry across the street to pristine Lake Alice for a scenic paddle or swim!:)`
         },
@@ -47,8 +43,6 @@ module.exports = {
           zipcode: 99166,
           price: "340",
           userId: 1,
-          lat: 41.67088,
-          ing: -71.54643,
           description: `A glitter of green and golden wonder in a vast edifice of stone and space" is how Ansel Adams described Yosemite, but he could have easily been describing this section of the Snoqualmie River.
           If Ansel were alive today, this historic cabin would be his retreat; his muse.`
         },
