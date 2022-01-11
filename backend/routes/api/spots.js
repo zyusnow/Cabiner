@@ -102,7 +102,7 @@ router.delete('/:id(\\d+)',asyncHandler(async function(req, res){
 }))
 
 // ---------------------post one spot ---------------------
-router.post('/create', validateSpot, multipleMulterUpload("images"), asyncHandler(async function(req, res){
+router.post('/add', validateSpot, multipleMulterUpload("images"), asyncHandler(async function(req, res){
     const urls = await multiplePublicFileUpload(req.files)
     const { address, city, state, country, name, price, zipcode, description, userId } = req.body;
     const spot = await Spot.creat({
@@ -117,10 +117,10 @@ router.post('/create', validateSpot, multipleMulterUpload("images"), asyncHandle
         userId
     })
     const spotId = spot.id;
-    const imagesUrl = await urls.map(url => {
+    const imagesUrls = await urls.map(url => {
         Image.create({spotId, url})
     })
-    return res.json({spot, imagesUrl})
+    return res.json({spot})
 
 }))
 

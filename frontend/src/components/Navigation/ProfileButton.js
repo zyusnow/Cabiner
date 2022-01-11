@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import NewSpotFormModal from "../NewSpotFormModal/NewSpotForm";
 import './Navigation.css';
+
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,7 +43,8 @@ function ProfileButton({ user }) {
         <div>
           <div className="profile-dropdown">
             {/* <div>{user.username}</div> */}
-            <div>Post a listing</div>
+            {/* <div>Post a listing</div> */}
+            <NewSpotFormModal/>
             <div>Manage listings</div>
             <div className='dropdown_logout' onClick={logout}>Log Out</div>
         </div>
