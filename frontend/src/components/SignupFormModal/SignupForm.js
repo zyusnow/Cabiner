@@ -5,7 +5,7 @@ import * as sessionActions from "../../store/session";
 import { Link } from "react-router-dom";
 import '../LoginFormModal/LoginForm.css';
 
-function SignupFormModal() {
+function SignupForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
@@ -79,4 +79,4 @@ function SignupFormModal() {
   );
 }
 
-export default SignupFormModal;
+export default SignupForm;

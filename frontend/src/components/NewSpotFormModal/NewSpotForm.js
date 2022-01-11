@@ -7,7 +7,7 @@ import '../LoginFormModal/LoginForm.css';
 
 
 
-function NewSpotFormModal() {
+function NewSpotForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
@@ -53,4 +53,4 @@ function NewSpotFormModal() {
   )
 }
 
-export default NewSpotFormModal;
+export default NewSpotForm;

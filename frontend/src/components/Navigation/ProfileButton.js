@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import NewSpotFormModal from "../NewSpotFormModal/NewSpotForm";
+import NewSpotFormModal from "../NewSpotFormModal";
 import './Navigation.css';
 
 
