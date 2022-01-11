@@ -35,21 +35,21 @@ const deleteSpot = (id) => ({
 })
 
 export const fetchApiSpots = () => async dispatch => {
-    const res = await fetch(`/api/spots`);
+    const res = await csrfFetch(`/api/spots`);
     if (res.ok) {
       const spots = await res.json();
       dispatch(getSpots(spots));
 }};
 
 export const fetchApiSpot = (id) => async dispatch => {
-    const res = await fetch(`/api/spots/${+id}`);
+    const res = await csrfFetch(`/api/spots/${+id}`);
     if (res.ok) {
       const spot = await res.json();
       dispatch(getSpot(spot));
 }};
 
 export const putOldSpot = (data) => async dispatch => {
-    const res = await fetch(`/api/spots/${data.id}`,{
+    const res = await csrfFetch(`/api/spots/${data.id}`,{
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ export const putOldSpot = (data) => async dispatch => {
 
 
 export const deleteOldSpot = (id) => async dispatch => {
-    const res = await fetch(`/api/spots/${+id}`, {
+    const res = await csrfFetch(`/api/spots/${+id}`, {
         method: 'DELETE',
     });
     if (res.message==="Delete sucessfully") {
@@ -121,7 +121,21 @@ const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_SPOT:
       newState = {...state};
-      newState[action.spot.id] = action.spot
+      newState[action.spot.id] = action.spot;
+      return newState;
+    case GET_SPOTS:
+      newState = {};
+      action.spots.forEach(spot => {
+        newState[action.id] = spot
+      })
+      return newState;
+    case GET_SPOT:
+      newState = {};
+      action.spot.forEach(spot => {
+        newState[spot.id] = spot
+      })
+      return newState;
+
     default:
       return state;
   }
