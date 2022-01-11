@@ -103,3 +103,19 @@
     color:rgb(109, 107, 107);
     font-size: 14px;
 }
+
+
+/* add a spot modal */
+.addSpot_btn:hover{
+        cursor: pointer;
+        color:rgb(236, 125, 34)
+}
+.manageSpots{
+    text-decoration: none;
+    color: black;
+}
+
+.manageSpots:hover{
+    cursor: pointer;
+    color:rgb(236, 125, 34)
+}

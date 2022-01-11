@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {useHistory} from 'react-router';
 import * as sessionActions from '../../store/session';
+import { NavLink } from 'react-router-dom';
 import NewSpotFormModal from "../NewSpotFormModal";
 import './Navigation.css';
 
@@ -8,28 +10,40 @@ import './Navigation.css';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
+  const sessionUser = useSelector(state => state.session.user);
+  const history = useHistory();
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+
+  const openMenu = (e) => {
+    e.preventDefault();
+    setShowMenu(!showMenu);
+    // if (showMenu) return;
+    // setShowMenu(true);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //   };
 
-    document.addEventListener('click', closeMenu);
+  //   document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
+
+  const manageSpots = (e) => {
+    e.preventDefault();
+    if(sessionUser) {
+      history.push(`/users/${sessionUser.id}/spots`)
+    }
+  }
 
   return (
     <>
@@ -42,17 +56,16 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div>
           <div className="profile-dropdown">
-            {/* <div>{user.username}</div> */}
-            {/* <div>Post a listing</div> */}
             <NewSpotFormModal/>
-            <div>Manage listings</div>
+            <div className='manageSpots' onClick={manageSpots}>Manage spots</div>
             <div className='dropdown_logout' onClick={logout}>Log Out</div>
-        </div>
+          </div>
         </div>
 
       )}
     </>
   );
 }
-
+            {/* <div>{user.username}</div> */}
+            {/* <div>Add a spot</div> */}
 export default ProfileButton;

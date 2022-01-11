@@ -3,13 +3,18 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import { useHistory } from 'react-router';
 import SignupFormModal from '../SignupFormModal';
 import './Navigation.css';
 
 
 function Navigation({ isLoaded }){
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
-
+  const goToSpots=(e)=>{
+    e.preventDefault();
+    history.push('/spots');
+  }
   // demo shown on the home page
   // const DemoLogin = (e) => {
   //   e.preventDefault();
@@ -51,10 +56,6 @@ function Navigation({ isLoaded }){
       <div className='nav_right'>
         {isLoaded && sessionLinks}
       </div>
-      <div className='flexible_container'>
-          <div className='not_sure'>Not sure where to go? Perfect.</div>
-          <button className='flexible_btn'><span>I'm flexible</span></button>
-        </div>
     </div>
   );
 }

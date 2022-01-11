@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
-// import '../NewSpotFormModal/NewSpotForm.css';
+// import { Redirect } from "react-router-dom";
 import { addNewSpot } from "../../store/spots";
 import '../LoginFormModal/LoginForm.css';
 
@@ -22,7 +21,7 @@ function NewSpotForm() {
   const [errors, setErrors] = useState([]);
   const [images, setImages] = useState([]);
 
-  if (sessionUser) return <Redirect to="/" />;
+  // if (sessionUser) return <Redirect to="/" />;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,7 +47,7 @@ function NewSpotForm() {
 
   return (
     <div className='login_container'>
-      <div className='login_title'>Post a listing </div>
+      <div className='login_title'>Add a spot </div>
     </div>
   )
 }
