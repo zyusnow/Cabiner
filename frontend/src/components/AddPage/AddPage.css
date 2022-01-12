@@ -1,0 +1,110 @@
+
+.login_container{
+    width: 100%;
+    text-align:center;
+    margin-bottom: 5px;
+}
+
+.login_title {
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgb(230, 227, 227);
+    padding-bottom: 10px;
+    padding-top: 20px;
+    color: rgb(27, 27, 27);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 10px;
+}
+
+.login_form_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.login_form input {
+    width: 80%;
+    font-size: 14px;
+    background-color: transparent;
+    margin-bottom: 10px;
+    padding: 0px;
+    margin:4px;
+    color:rgb(80, 79, 79);
+    line-height: 30px;
+    border: 0.8px solid rgb(197, 197, 197);
+    border-radius: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.login_btn{
+    width: 88%;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    line-height: 40px;
+    border-radius: 8px;
+    border:none;
+    color: rgb(255, 255, 255);
+    background: linear-gradient(to right, rgb(211, 106, 20) 0%, rgb(228, 125, 29) 50%, rgb(215, 106, 4) 100%);
+}
+
+.demo{
+    width: 88%;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    line-height: 50px;
+    border-radius: 8px;
+    border:none;
+    color: rgb(236, 125, 34);
+}
+
+.addition{
+  display: flex;
+  justify-content: center;
+  color:rgb(109, 107, 107);
+  font-size: 14px;
+
+}
+
+.link{
+    padding-left: 5px;
+    color:rgb(109, 107, 107);
+    font-size: 14px;
+}
+
+
+/* add a spot modal */
+.addSpot_btn:hover{
+        cursor: pointer;
+        color:rgb(236, 125, 34)
+}
+.manageSpots{
+    text-decoration: none;
+    color: black;
+}
+
+.manageSpots:hover{
+    cursor: pointer;
+    color:rgb(236, 125, 34)
+}
+
+
+.textarea{
+    width: 80%;
+    font-size: 14px;
+    background-color: transparent;
+    margin-bottom: 10px;
+    padding: 0px;
+    margin:4px;
+    color:rgb(80, 79, 79);
+    line-height: 30px;
+    border: 0.8px solid rgb(197, 197, 197);
+    border-radius: 8px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-family: "Open Sans", sans-serif;
+}

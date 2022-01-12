@@ -28,6 +28,9 @@ function App() {
         <Route exact path='/'>
           <LandingPage />
         </Route>
+        <Route exact path='/spots/add'>
+          <AddPage />
+        </Route>
         <Route exact path='/spots'>
           <SpotsPage />
         </Route>
@@ -42,9 +45,6 @@ function App() {
     </>
   )}
 
-        // <Route exact path='/spots/add'>
-        //   <AddPage />
-        // </Route>
         // <Route exact path='/spots/:id/edit'>
         //   <EditPage/>
         // </Route>
