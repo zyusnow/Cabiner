@@ -18,14 +18,14 @@ function NewSpotForm() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState(1234);
   const [zipcode, setZipcode] = useState("");
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("nice");
   const [errors, setErrors] = useState([]);
-  const [url1, setUrl1] = useState("");
-  const [url2, setUrl2] = useState("");
-  const [url3, setUrl3] = useState("");
-  const [url4, setUrl4] = useState("");
+  const [url1, setUrl1] = useState("https://res.cloudinary.com/dprnsux1z/image/upload/v1641998835/keenan-barber-7gV21XdcGuw-unsplash_ywjtib.jpg");
+  const [url2, setUrl2] = useState("https://res.cloudinary.com/dprnsux1z/image/upload/v1641998747/josh-hild-vl05z6rjMaU-unsplash_ceeepq.jpg");
+  const [url3, setUrl3] = useState("https://res.cloudinary.com/dprnsux1z/image/upload/v1641998734/james-garcia-3Cch4FRDqPg-unsplash_fbbejy.jpg");
+  const [url4, setUrl4] = useState("https://res.cloudinary.com/dprnsux1z/image/upload/v1641979714/sekwang-chia-WRQk1q2EMwE-unsplash_kgccdu.jpg");
 
 
   if(!sessionUser) {
@@ -82,12 +82,7 @@ function NewSpotForm() {
     if (data) {
       history.push(`/spots/${data.id}`);
   }}
-  // .catch(async (res) => {
-  //   const data = await res.json();
-  //   console.log(data)
-  //   if (data && data.errors) setErrors(data.errors);
-  // })
-  // history.push(`/spots/${data.id}`);
+
 
 
   return (

@@ -41,11 +41,11 @@ const validateSpot = [
         .isLength({ max: 1000 })
         .exists({ checkFalsy: true })
         .withMessage("Description must not be more than 1000 characters long"),
-    check('url')
+    check('url1')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    handleValidationErrors,
+    //handleValidationErrors,
   ];
 
 
@@ -141,6 +141,7 @@ router.post('/add', requireAuth, validateSpot, asyncHandler(async function(req, 
 
     // const { address, city, state, country, name, price, zipcode, description, userId, image1, image2, image3, image4 } = req.body;
     const { oneSpot, images} = req.body;
+    console.log(oneSpot);
     const spot = await Spot.create(oneSpot);
     const newImg1 = {
         spotId: spot.id,
@@ -168,24 +169,6 @@ router.post('/add', requireAuth, validateSpot, asyncHandler(async function(req, 
 
     return res.json(spot)
 
-    // const spot = await Spot.create({
-    //     address,
-    //     city,
-    //     state,
-    //     country,
-    //     name,
-    //     price,
-    //     zipcode,
-    //     description,
-    //     userId
-    // });
-    // const spotId = spot.id;
-    // const newImgUrl = {
-    //     spotId,
-    //     url
-    // }
-    // await Image.create(newImgUrl)
-    // return res.json(spot)
 }))
 
 module.exports = router;

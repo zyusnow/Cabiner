@@ -34,6 +34,7 @@ export const fetchApiSpots = () => async dispatch => {
       // const data = await res.json();
       // console.log("testing", data);
       const spots = await res.json();
+      console.log(spots);
       dispatch(getSpots(spots));
 }};
 
@@ -76,7 +77,7 @@ export const deleteOldSpot = (id) => async dispatch => {
 
 
 
-export const addNewSpot = (spot) => async (dispatch) => {
+export const addNewSpot = (spot) => async dispatch => {
   const res = await fetch(`/api/spots/add`, {
     method: 'POST',
     headers: {
@@ -85,11 +86,14 @@ export const addNewSpot = (spot) => async (dispatch) => {
     body: JSON.stringify(spot)
   });
 
-
   if (res.ok) {
     const spot = await res.json();
     await dispatch(addSpot(spot));
-    return spot
+    return spot;
+  }
+  else{
+    const error = await res.json();
+    return error;
   }
   // const {address,
   //   city,
