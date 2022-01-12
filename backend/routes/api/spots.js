@@ -43,7 +43,7 @@ const validateSpot = [
     check('url')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
-        .withMessage("Please provide a image url"),
+        .withMessage("Please provide a image url."),
     // handleValidationErrors,
   ];
 
