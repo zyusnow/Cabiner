@@ -153,7 +153,7 @@ function NewSpotForm() {
               required
               placeholder='Description'
               cols="30"
-              rows="5"
+              rows="2"
             />
               <input
                 type="text"
