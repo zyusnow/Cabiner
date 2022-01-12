@@ -22,7 +22,15 @@ function NewSpotForm() {
   const [zipcode, setZipcode] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState([]);
-  const [url, setUrl] = useState([]);
+  const [url1, setUrl1] = useState("");
+  const [url2, setUrl2] = useState("");
+  const [url3, setUrl3] = useState("");
+  const [url4, setUrl4] = useState("");
+
+
+  if(!sessionUser) {
+    history.push('/');
+  }
 
   // if (sessionUser) return <Redirect to="/" />;
   useEffect(() => {
@@ -35,14 +43,18 @@ function NewSpotForm() {
     if (description.length > 1000) errors.push("Description must not be more than 1000 characters long")
     if (price < 0) errors.push("Please provide a valid price")
     if (zipcode < 0) errors.push("Please provide a valid zip code")
-    if (url.length > 250) errors.push("Please provide a image url.")
+    if (url1.length > 250) errors.push("Please provide a image url.")
+    if (url2.length > 250) errors.push("Please provide a image url.")
+    if (url3.length > 250) errors.push("Please provide a image url.")
+    if (url4.length > 250) errors.push("Please provide a image url.")
     setErrors(errors)
-    }, [address, city, state, country, name, description, price, zipcode, url])
+    }, [address, city, state, country, name, description, price, zipcode, url1, url2, url3, url4])
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newSpot = dispatch(addNewSpot({
+    const newSpot = {
+      oneSpot:{
         address,
         city,
         state,
@@ -52,36 +64,31 @@ function NewSpotForm() {
         zipcode,
         description,
         userId,
-        url
-    }))
-    .catch(async (res) => {
-      const data = await res.json();
-      console.log(data)
-      if (data && data.errors) setErrors(data.errors);
-    })}
-  //   const newSpot = {
-  //     address,
-  //     city,
-  //     state,
-  //     country,
-  //     name,
-  //     price,
-  //     zipcode,
-  //     description,
-  //     userId,
-  //     url
-  //   }
-  //   let data;
-  //   try{
-  //     data = dispatch(addNewSpot(newSpot));
-  //   } catch(error) {
-  //     throw new Error
-  //   }
-  //   console.log("i'm data",data)
-  //   if (data) {
-  //     history.push(`/spots/${data.id}`);
-  //   }
-  // }
+      },
+      images:{
+        url1,
+        url2,
+        url3,
+        url4
+      }
+    }
+    let data;
+    try{
+      data = dispatch(addNewSpot(newSpot));
+    } catch(error) {
+      throw new Error
+    }
+    console.log("i'm data",data)
+    if (data) {
+      history.push(`/spots/${data.id}`);
+  }}
+  // .catch(async (res) => {
+  //   const data = await res.json();
+  //   console.log(data)
+  //   if (data && data.errors) setErrors(data.errors);
+  // })
+  // history.push(`/spots/${data.id}`);
+
 
   return (
     <div className='login_container'>
@@ -108,7 +115,6 @@ function NewSpotForm() {
               placeholder='Address'
               name='name'
               />
-
               <input
               type="text"
               value={city}
@@ -153,14 +159,35 @@ function NewSpotForm() {
               required
               placeholder='Description'
               cols="30"
-              rows="2"
+              rows="3"
             />
               <input
                 type="text"
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
+                value={url1}
+                onChange={(e) => setUrl1(e.target.value)}
                 required
-                placeholder='Image Url'
+                placeholder='Image 1 Url'
+              />
+              <input
+                type="text"
+                value={url2}
+                onChange={(e) => setUrl2(e.target.value)}
+                required
+                placeholder='Image 2 Url'
+              />
+              <input
+                type="text"
+                value={url3}
+                onChange={(e) => setUrl3(e.target.value)}
+                required
+                placeholder='Image 3 Url'
+              />
+              <input
+                type="text"
+                value={url4}
+                onChange={(e) => setUrl4(e.target.value)}
+                required
+                placeholder='Image 4 Url'
               />
               </div>
           <button className='login_btn'type="submit">Submit</button>

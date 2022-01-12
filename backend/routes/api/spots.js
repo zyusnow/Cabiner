@@ -44,7 +44,7 @@ const validateSpot = [
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    // handleValidationErrors,
+    handleValidationErrors,
   ];
 
 
@@ -72,28 +72,53 @@ router.get('/:id(\\d+)', asyncHandler(async function(req, res){
 
 // ---------------------update one spot ---------------------
 // router.put('/:id(\\d+/)', validateSpot, asyncHandler(async function(req, res){
-router.put('/:id(\\d+)/edit', requireAuth, asyncHandler(async function(req, res){
-    const spotId = parseInt(req.params.id, 10);
-    const spotToUpdate = await Spot.findByPk(spotId);
-    const {address, city, state, country, name, price, zipcode, description, url} = req.body;
-    await spotToUpdate.update({
-        address,
-        city,
-        state,
-        country,
-        name,
-        price,
-        zipcode,
-        description
-    })
-    const newImgUrl = {
+    router.put('/:id(\\d+)/edit', requireAuth, asyncHandler(async function(req, res){
+        const spotId = parseInt(req.params.id, 10);
+        const spotToUpdate = await Spot.findByPk(spotId);
+        const { oneSpot, images} = req.body;
+        await spotToUpdate.update(oneSpot);
+
+
+        const newImg1 = {
+            id: images.url1.id,
+            spotId,
+            url: images.url1.url
+        }
+        const img1 = await Image.findByPk(images.url1.id)
+        await img1.update(newImg1)
+
+        const newImg2 = {
+            id: images.url2.id,
+            spotId,
+            url: images.url2.url
+        }
+        const img2 = await Image.findByPk(images.url2.id)
+        await img2.update(newImg2)
+
+    const newImg3 = {
+        id: images.url3.id,
         spotId,
-        url
+        url: images.url3.url
     }
-    const img = await Image.findOne({
-        where:url
-    })
-    await img.update(newImgUrl)
+    const img3 = await Image.findByPk(images.url3.id)
+    await img3.update(newImg3)
+
+    const newImg4 = {
+        id: images.url4.id,
+        spotId,
+        url: images.url4.url
+    }
+    const img4 = await Image.findByPk(images.url4.id)
+    await img4.update(newImg4)
+
+    // const newImgUrl = {
+    //     spotId,
+    //     url
+    // }
+    // const img = await Image.findOne({
+    //     where:url
+    // })
+    // await img.update(newImgUrl)
     const spot = await Spot.findByPk(spotId, {include: Image});
     res.json(spot)
 }))
@@ -113,25 +138,53 @@ router.delete('/:id(\\d+)',asyncHandler(async function(req, res){
 router.post('/add', requireAuth, validateSpot, asyncHandler(async function(req, res){
     // const urls = await multiplePublicFileUpload(req.files)
 
-    const { address, city, state, country, name, price, zipcode, description, userId, url } = req.body;
-    const spot = await Spot.create({
-        address,
-        city,
-        state,
-        country,
-        name,
-        price,
-        zipcode,
-        description,
-        userId
-    });
-    const spotId = spot.id;
-    const newImgUrl = {
-        spotId,
-        url
+    // const { address, city, state, country, name, price, zipcode, description, userId, image1, image2, image3, image4 } = req.body;
+    const { oneSpot, images} = req.body;
+    const spot = await Spot.create(oneSpot);
+    const newImg1 = {
+        spotId: spot.id,
+        url:images.url1
     }
-    await Image.create(newImgUrl)
+    await Image.create(newImg1)
+
+    const newImg2 = {
+        spotId: spot.id,
+        url:images.url2
+    }
+    await Image.create(newImg2)
+
+    const newImg3 = {
+        spotId: spot.id,
+        url:images.url3
+    }
+    await Image.create(newImg3)
+
+    const newImg4 = {
+        spotId: spot.id,
+        url:images.url4
+    }
+    await Image.create(newImg4)
+
     return res.json(spot)
+
+    // const spot = await Spot.create({
+    //     address,
+    //     city,
+    //     state,
+    //     country,
+    //     name,
+    //     price,
+    //     zipcode,
+    //     description,
+    //     userId
+    // });
+    // const spotId = spot.id;
+    // const newImgUrl = {
+    //     spotId,
+    //     url
+    // }
+    // await Image.create(newImgUrl)
+    // return res.json(spot)
 }))
 
 module.exports = router;
