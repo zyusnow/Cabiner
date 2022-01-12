@@ -1,0 +1,41 @@
+.page_title{
+    color: #ff6e2b;
+    font-size: 30px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-weight: 650;
+    margin-left: 40px;
+  }
+
+.spots_container{
+    width: 1290px;
+    display: grid;
+    grid-template-columns: 430px 430px 430px;
+    gap: 20px;
+    margin-left: 60px;
+  }
+
+/* .img_container{ */
+.img{
+    width: 420px;
+    height: 260px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    object-fit: unset
+}
+
+.spotNameLink{
+    text-decoration: none;
+    color: rgb(24, 24, 24);
+    font-weight: 600;
+    font-size: 20px;
+}
+.spotNameLink:hover{
+    cursor: pointer;
+    color:rgb(236, 125, 34)
+}
+
+.spot_container{
+  cursor: pointer;
+}

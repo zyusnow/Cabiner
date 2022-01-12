@@ -45,6 +45,10 @@ function ProfileButton({ user }) {
     }
   }
 
+  const goToAdd=(e)=>{
+    e.preventDefault();
+    history.push('/spots/add');
+  }
   return (
     <>
       <div className="nav_left_username">Welcome, {user.username}!</div>
@@ -56,7 +60,9 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div>
           <div className="profile-dropdown">
+
             <NewSpotFormModal/>
+            {/* <div className='manageSpots' onClick={goToAdd}>Add a spot</div> */}
             <div className='manageSpots' onClick={manageSpots}>Manage spots</div>
             <div className='dropdown_logout' onClick={logout}>Log Out</div>
           </div>

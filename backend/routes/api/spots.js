@@ -3,7 +3,8 @@ const asyncHandler = require('express-async-handler');
 const { Spot, Image, User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
-const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
+const { requireAuth } = require('../../utils/auth');
+// const { multiplePublicFileUpload, multipleMulterUpload } = require('../../awsS3');
 const router = express.Router();
 
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
@@ -11,42 +12,39 @@ const router = express.Router();
 const validateSpot = [
     check('address')
       .isLength({ max: 200 })
-      .withMessage("Address must not be more than 200 characters long")
       .exists({ checkFalsy: true })
-      .withMessage('Please provide a address.'),
+      .withMessage("Address must not be more than 200 characters long"),
     check('city')
         .isLength({ max: 50 })
-        .withMessage("City must not be more than 50 characters long")
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a city.'),
+        .withMessage("City must not be more than 50 characters long"),
     check('state')
         .isLength({ max: 50 })
-        .withMessage("State must not be more than 50 characters long")
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a state.'),
+        .withMessage("State must not be more than 50 characters long"),
     check('country')
         .isLength({ max: 50 })
-        .withMessage("Country must not be more than 50 characters long")
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a country.'),
+        .withMessage("Country must not be more than 50 characters long"),
     check('name')
         .isLength({ max: 50 })
-        .withMessage("Title must not be more than 50 characters long")
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a title.'),
+        .withMessage("Title must not be more than 50 characters long"),
     check('pirce')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a price.')
-        .isDecimal(),
+        .withMessage('Please provide a price.'),
     check('zipcode')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a zipcode.'),
     check('description')
         .isLength({ max: 1000 })
-        .withMessage("Description must not be more than 1000 characters long")
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a description.'),
-    handleValidationErrors,
+        .withMessage("Description must not be more than 1000 characters long"),
+    check('url')
+        .isLength({ max: 250 })
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide a image url"),
+    // handleValidationErrors,
   ];
 
 
@@ -62,6 +60,7 @@ router.get('/',asyncHandler(async function(req, res) {
 }))
 
 // ---------------------get one spot---------------------
+// router.get('/:id(\\d+)', asyncHandler(async function(req, res){
 router.get('/:id(\\d+)', asyncHandler(async function(req, res){
     const spotId = parseInt(req.params.id, 10);
     const spot = await Spot.findOne({
@@ -72,10 +71,11 @@ router.get('/:id(\\d+)', asyncHandler(async function(req, res){
 }))
 
 // ---------------------update one spot ---------------------
-router.put('/:id(\\d+)', validateSpot, asyncHandler(async function(req, res){
+// router.put('/:id(\\d+/)', validateSpot, asyncHandler(async function(req, res){
+router.put('/:id(\\d+)/edit', requireAuth, asyncHandler(async function(req, res){
     const spotId = parseInt(req.params.id, 10);
     const spotToUpdate = await Spot.findByPk(spotId);
-    const {address, city, state, country, name, price, zipcode, description} = req.body;
+    const {address, city, state, country, name, price, zipcode, description, url} = req.body;
     await spotToUpdate.update({
         address,
         city,
@@ -86,6 +86,14 @@ router.put('/:id(\\d+)', validateSpot, asyncHandler(async function(req, res){
         zipcode,
         description
     })
+    const newImgUrl = {
+        spotId,
+        url
+    }
+    const img = await Image.findOne({
+        where:url
+    })
+    await img.update(newImgUrl)
     const spot = await Spot.findByPk(spotId, {include: Image});
     res.json({spot})
 }))
@@ -102,10 +110,11 @@ router.delete('/:id(\\d+)',asyncHandler(async function(req, res){
 }))
 
 // ---------------------post one spot ---------------------
-router.post('/add', validateSpot, multipleMulterUpload("images"), asyncHandler(async function(req, res){
-    const urls = await multiplePublicFileUpload(req.files)
-    const { address, city, state, country, name, price, zipcode, description, userId } = req.body;
-    const spot = await Spot.creat({
+router.post('/add', requireAuth, validateSpot, asyncHandler(async function(req, res){
+    // const urls = await multiplePublicFileUpload(req.files)
+
+    const { address, city, state, country, name, price, zipcode, description, userId, url } = req.body;
+    const spot = await Spot.create({
         address,
         city,
         state,
@@ -115,13 +124,14 @@ router.post('/add', validateSpot, multipleMulterUpload("images"), asyncHandler(a
         zipcode,
         description,
         userId
-    })
+    });
     const spotId = spot.id;
-    const imagesUrls = await urls.map(url => {
-        Image.create({spotId, url})
-    })
+    const newImgUrl = {
+        spotId,
+        url
+    }
+    await Image.create(newImgUrl)
     return res.json({spot})
-
 }))
 
 module.exports = router;

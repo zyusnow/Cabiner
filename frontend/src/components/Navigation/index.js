@@ -42,7 +42,8 @@ function Navigation({ isLoaded }){
 
   return (
     <div className='nav_container'>
-        <div className='nav_left'>
+      <div className='sub_nav_container'>
+      <div className='nav_left'>
           <NavLink to='/'>
             <img className="nav_logo" alt='logo' src='../../images/logo/nav_logo.png' />
           </NavLink>
@@ -55,6 +56,7 @@ function Navigation({ isLoaded }){
       </div> */}
       <div className='nav_right'>
         {isLoaded && sessionLinks}
+      </div>
       </div>
     </div>
   );

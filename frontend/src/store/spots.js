@@ -37,15 +37,17 @@ const deleteSpot = (id) => ({
 export const fetchApiSpots = () => async dispatch => {
     const res = await csrfFetch(`/api/spots`);
     if (res.ok) {
-      const spots = await res.json();
-      dispatch(getSpots(spots));
+      const data = await res.json();
+      console.log("testing", data);
+      dispatch(getSpots(data.spots));
 }};
 
 export const fetchApiSpot = (id) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${+id}`);
     if (res.ok) {
-      const spot = await res.json();
-      dispatch(getSpot(spot));
+      const data = await res.json();
+      console.log("testing", data);
+      dispatch(getSpot(data.spot));
 }};
 
 export const putOldSpot = (data) => async dispatch => {
@@ -68,7 +70,7 @@ export const deleteOldSpot = (id) => async dispatch => {
         method: 'DELETE',
     });
     if (res.message==="Delete sucessfully") {
-        dispatch(deleteSpot)
+        dispatch(deleteSpot(id))
     }
 }
 
@@ -118,24 +120,27 @@ export const addNewSpot = (spot) => async (dispatch) => {
 const initialState = {};
 const spotReducer = (state = initialState, action) => {
   let newState;
-  switch (action.type) {
+  switch (action.type){
     case ADD_SPOT:
       newState = {...state};
       newState[action.spot.id] = action.spot;
       return newState;
     case GET_SPOTS:
-      newState = {};
+      newState = {...state};
+      // console.log("arr", action.spots);
       action.spots.forEach(spot => {
-        newState[action.id] = spot
-      })
-      return newState;
-    case GET_SPOT:
-      newState = {};
-      action.spot.forEach(spot => {
         newState[spot.id] = spot
       })
       return newState;
-
+    case GET_SPOT:
+      newState = {...state};
+      newState[action.spot.id] = action.spot
+      console.log("spot", action.spot);
+      return newState;
+    case DELETE_SPOT:
+      newState = {...state};
+      delete newState[action.id]
+      return newState;
     default:
       return state;
   }

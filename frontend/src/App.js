@@ -8,9 +8,9 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import SpotsPage from "./components/SpotsPage";
-import SpotPage from "./components/SpotPage/SpotPage";
-
-
+import SpotPage from "./components/SpotPage";
+import AddPage from "./components/AddPage";
+import EditPage from "./components/EditPage";
 
 
 function App() {
@@ -28,14 +28,26 @@ function App() {
         <Route exact path='/'>
           <LandingPage />
         </Route>
-        <Route path='/spots'>
+        <Route exact path='/spots'>
           <SpotsPage />
+        </Route>
+        <Route exact path='/spots/add'>
+          <AddPage />
+        </Route>
+        <Route exact path='/spots/:id'>
+          <SpotPage />
+        </Route >
+        <Route>
+            <h1> Page Not Found</h1>
         </Route>
       </Switch>
     )}
     </>
   )}
 
+        // <Route exact path='/spots/:id/edit'>
+        //   <EditPage/>
+        // </Route>
 
 
 export default App;
