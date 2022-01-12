@@ -56,7 +56,7 @@ router.get('/',asyncHandler(async function(req, res) {
             ['createdAt', 'DESC']
         ]
     });
-    return res.json({spots})
+    return res.json(spots)
 }))
 
 // ---------------------get one spot---------------------
@@ -67,7 +67,7 @@ router.get('/:id(\\d+)', asyncHandler(async function(req, res){
         where: {id: spotId},
         include: [Image, User]
     })
-    return res.json({spot});
+    return res.json(spot);
 }))
 
 // ---------------------update one spot ---------------------
@@ -95,7 +95,7 @@ router.put('/:id(\\d+)/edit', requireAuth, asyncHandler(async function(req, res)
     })
     await img.update(newImgUrl)
     const spot = await Spot.findByPk(spotId, {include: Image});
-    res.json({spot})
+    res.json(spot)
 }))
 
 // ---------------------delete one spot ---------------------
@@ -131,7 +131,7 @@ router.post('/add', requireAuth, validateSpot, asyncHandler(async function(req, 
         url
     }
     await Image.create(newImgUrl)
-    return res.json({spot})
+    return res.json(spot)
 }))
 
 module.exports = router;
