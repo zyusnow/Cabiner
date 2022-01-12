@@ -34,7 +34,7 @@ function NewSpotForm() {
     if (name.length > 50) errors.push("Name must not be more than 50 characters long")
     if (description.length > 1000) errors.push("Description must not be more than 1000 characters long")
     if (price < 0) errors.push("Please provide a valid price")
-    if (zipcode < 0) errors.push("Please provide a valid zip code")
+    if (zipcode.length >20) errors.push("Zipcode must not be more than 20 characters long")
     if (url.length > 250) errors.push("Please provide a image url.")
     setErrors(errors)
     }, [address, city, state, country, name, description, price, zipcode, url])

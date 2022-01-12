@@ -17,7 +17,7 @@ function SpotPage(){
     }, [dispatch]);
     // after useEffect
     // console.log("1hihi",spot[spotId].Images);
-    const imgArr = spot[spotId].Images;
+    const imgArr = spot[spotId]?.Images;
 
     const goToSpots=(e)=>{
         e.preventDefault();
@@ -38,24 +38,24 @@ function SpotPage(){
     return (
         <>
         <div className='cabin_container'>
-              <div className='title'> {spot[spotId].name}</div>
+              <div className='title'> {spot[spotId]?.name}</div>
             <div className='forBack'>
             <div className='address'>
-                {spot[spotId].address}, {spot[spotId].city}, {spot[spotId].state}, {spot[spotId].country}, {spot[spotId].zipcode}
+                {spot[spotId]?.address}, {spot[spotId]?.city}, {spot[spotId]?.state}, {spot[spotId]?.country}, {spot[spotId]?.zipcode}
             </div>
             <div className='backToSpots'onClick={e=>goToSpots(e)}>See all cabins</div>
             </div>
             <div className='img_main_container'>
-                {imgArr.map(img => (
-                    <div key={img.id}>
-                            <div className='img_container'><img className="img" src={img.url}></img></div>
+                {imgArr?.map(img => (
+                    <div key={img?.id}>
+                            <div className='img_container'><img className="img" src={img?.url}></img></div>
 
                     </div>
                 ))}
             </div>
             <div className='description'>
             <h3>About this cabin</h3>
-            <div> {spot[spotId].description}</div>
+            <div> {spot[spotId]?.description}</div>
             </div>
         </div>
         </>

@@ -34,8 +34,9 @@ const validateSpot = [
         .exists({ checkFalsy: true })
         .withMessage('Please provide a price.'),
     check('zipcode')
+        .isLength({ max: 20 })
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a zipcode.'),
+        .withMessage('Zipcode must not be more than 20 characters long'),
     check('description')
         .isLength({ max: 1000 })
         .exists({ checkFalsy: true })

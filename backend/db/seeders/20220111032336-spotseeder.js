@@ -15,7 +15,7 @@ module.exports = {
           city: "Skykomish",
           state: "WA",
           country:"United Status",
-          zipcode: 98288,
+          zipcode: "98288",
           price: "460",
           userId: 1,
           description: `Our A-frame is settled in the private cabin community of Timber Lane Village just minutes from Steven's Pass ski resort and some of the best hiking spots in the central cascades.
@@ -28,7 +28,7 @@ module.exports = {
           city: "Sequim",
           state: "WA",
           country:"United Status",
-          zipcode: 98382,
+          zipcode: "98382",
           price: "170",
           userId: 1,
           description: `Elliott's Cabin is a log cabin snuggled in the cascade foothills, but only 45 minutes from downtown Seattle. We are 15 minutes from Snoqualmie Falls and close to numerous breathtaking hikes. Sleep in a snug loft and enjoy the convenience of a full kitchen.
@@ -40,7 +40,7 @@ module.exports = {
           city: "Republic",
           state: "WA",
           country:"United Status",
-          zipcode: 99166,
+          zipcode: "99166",
           price: "340",
           userId: 1,
           description: `A glitter of green and golden wonder in a vast edifice of stone and space" is how Ansel Adams described Yosemite, but he could have easily been describing this section of the Snoqualmie River.

@@ -18,7 +18,7 @@ function NewSpotForm() {
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [zipcode, setZipcode] = useState("");
   const [description, setDescription] = useState("");
   const [errors, setErrors] = useState([]);
@@ -42,7 +42,7 @@ function NewSpotForm() {
     if (name.length > 50) errors.push("Name must not be more than 50 characters long")
     if (description.length > 1000) errors.push("Description must not be more than 1000 characters long")
     if (price < 0) errors.push("Please provide a valid price")
-    if (zipcode < 0) errors.push("Please provide a valid zip code")
+    if (zipcode.length>20) errors.push("Please provide a valid zip code")
     if (url1.length > 250) errors.push("Please provide a image url.")
     if (url2.length > 250) errors.push("Please provide a image url.")
     if (url3.length > 250) errors.push("Please provide a image url.")
