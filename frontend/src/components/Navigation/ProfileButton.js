@@ -17,21 +17,21 @@ function ProfileButton({ user }) {
   const openMenu = (e) => {
     e.preventDefault();
     setShowMenu(!showMenu);
-    // if (showMenu) return;
-    // setShowMenu(true);
+    if (showMenu) return;
+    setShowMenu(true);
   };
 
-  // useEffect(() => {
-  //   if (!showMenu) return;
+  useEffect(() => {
+    if (!showMenu) return;
 
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //   };
+    const closeMenu = () => {
+        setShowMenu(false);
+    };
 
-  //   document.addEventListener('click', closeMenu);
+    document.addEventListener('click', closeMenu);
 
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
+    return () => document.removeEventListener("click", closeMenu);
+}, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
