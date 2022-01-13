@@ -81,7 +81,7 @@ function NewSpotForm() {
     } catch(error) {
       throw new Error
     }
-    console.log("i'm data",data)
+    // console.log("i'm data",data)
     if (data) {
       history.push(`/spots/${data.id}`);
       // history.push(`/`);

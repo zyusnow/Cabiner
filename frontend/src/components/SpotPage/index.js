@@ -32,11 +32,15 @@ function SpotPage(){
     // const spotsArr = Object.values(spots);
     // const spot = spotsArr.filter((spot) => spot["id"] === +id);
     // console.log("hihi", spot[0].name)
+    const gotoedit=(e)=>{
+        e.preventDefault();
+        history.push(`/spots/${spotId}/edit`);
+      }
 
     const gotodelete =async(e)=>{
         e.preventDefault();
         const res = await dispatch(deleteOldSpot(spotId));
-        console.log(res);
+        // console.log(res);
         if (res.ok === true) {
             alert('Delete sucessfully!')
             history.push(`/users/${spot[spotId].userId}/spots`);
@@ -50,7 +54,7 @@ function SpotPage(){
               {sessionUser?.id===spot[spotId]?.userId &&
               <>
                 <div className='useBtn'>
-                  {/* <div className='forBack' onClick={gotoedit}>Edit</div> */}
+                  <div className='forBack' onClick={gotoedit}>Edit</div>
                   <div className='forBack' onClick={gotodelete}>Delete</div>
                 </div>
               </>}

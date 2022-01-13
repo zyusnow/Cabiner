@@ -41,19 +41,19 @@ const validateSpot = [
         .isLength({ max: 1000 })
         .exists({ checkFalsy: true })
         .withMessage("Description must not be more than 1000 characters long"),
-    check('images.url1')
+    check('images.img4.url')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    check('images.url2')
+    check('images.img4.url')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    check('images.url3')
+    check('images.img4.url')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    check('images.url4')
+    check('images.img4.url')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
@@ -85,43 +85,43 @@ router.get('/:id(\\d+)', asyncHandler(async function(req, res){
 
 // ---------------------update one spot ---------------------
 // router.put('/:id(\\d+/)', validateSpot, asyncHandler(async function(req, res){
-    router.put('/:id(\\d+)/edit', requireAuth, asyncHandler(async function(req, res){
+    router.put('/:id(\\d+)/edit', requireAuth, validateSpot, asyncHandler(async function(req, res){
         const spotId = parseInt(req.params.id, 10);
         const spotToUpdate = await Spot.findByPk(spotId);
         const { oneSpot, images} = req.body;
         await spotToUpdate.update(oneSpot);
 
-
+        // console.log("i'm images", images)
         const newImg1 = {
-            id: images.url1.id,
+            id: images.img1.id,
             spotId,
-            url: images.url1.url
+            url: images.img1.url
         }
-        const img1 = await Image.findByPk(images.url1.id)
+        const img1 = await Image.findByPk(images.img1.id,)
         await img1.update(newImg1)
 
         const newImg2 = {
-            id: images.url2.id,
+            id: images.img2.id,
             spotId,
-            url: images.url2.url
+            url: images.img2.url
         }
-        const img2 = await Image.findByPk(images.url2.id)
+        const img2 = await Image.findByPk(images.img2.id)
         await img2.update(newImg2)
 
     const newImg3 = {
-        id: images.url3.id,
+        id: images.img3.id,
         spotId,
-        url: images.url3.url
+        url: images.img3.url
     }
-    const img3 = await Image.findByPk(images.url3.id)
+    const img3 = await Image.findByPk(images.img3.id,)
     await img3.update(newImg3)
 
     const newImg4 = {
-        id: images.url4.id,
+        id: images.img4.id,
         spotId,
-        url: images.url4.url
+        url: images.img4.url
     }
-    const img4 = await Image.findByPk(images.url4.id)
+    const img4 = await Image.findByPk(images.img4.id,)
     await img4.update(newImg4)
 
     // const newImgUrl = {
@@ -153,7 +153,7 @@ router.post('/add', requireAuth, validateSpot, asyncHandler(async function(req, 
 
     // const { address, city, state, country, name, price, zipcode, description, userId, image1, image2, image3, image4 } = req.body;
     const { oneSpot, images} = req.body;
-    console.log(oneSpot);
+    // console.log(oneSpot);
     const spot = await Spot.create(oneSpot);
     const newImg1 = {
         spotId: spot.id,

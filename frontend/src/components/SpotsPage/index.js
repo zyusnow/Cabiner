@@ -10,7 +10,7 @@ function SpotsPage() {
     const dispatch = useDispatch();
     const history = useHistory();
     const spots = useSelector(state => state.spot);
-    console.log("hihihi", spots)
+    // console.log("hihihi", spots)
 
 
     const toSpot=(id,e)=> {

@@ -56,7 +56,7 @@ function NewSpotForm() {
     }))
     .catch(async (res) => {
       const data = await res.json();
-      console.log(data)
+      // console.log(data)
       if (data && data.errors) setErrors(data.errors);
     })}
   //   const newSpot = {
