@@ -57,7 +57,7 @@ const validateSpot = [
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    handleValidationErrors,
+    // handleValidationErrors,
   ];
 
 
