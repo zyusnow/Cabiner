@@ -8,8 +8,6 @@ import { useParams } from 'react-router-dom';
 import { editSpot } from '../../store/spots';
 import "./EditSpot.css";
 
-
-
 function EditSpot() {
 
     const dispatch = useDispatch();
@@ -19,9 +17,6 @@ function EditSpot() {
     const spotId = +id;
     const spot = useSelector(state => state.spot[spotId]);
     // console.log("i'm edit spot",spot)
-
-    // const imgurlkey = spot.Images[0].url1
-    // console.log(imgurlkey)
     useEffect(() => {
         dispatch(fetchApiSpot(spotId));
     }, [dispatch],spotId);
@@ -42,60 +37,67 @@ function EditSpot() {
     const [errors, setErrors] = useState([]);
 
 
+    // useEffect(()=>{
+    //   if (photo && (!photoUrl && !caption)) {
+    //     setPhotoUrl(photo.photoUrl)
+    //     setCaption(photo.caption)
+    //     setIsPublic(photo.isPublic)
+    //   }
+    // }, [spot])
+
+// like add: reason for comment out: this time only use errors from the backend don't use in frontend.
+    // useEffect(() => {
+    //     const validateErrors = [];
+    //     if (address.length > 200) errors.push("Address must not be more than 200 characters long")
+    //     if (city.length > 50) errors.push("City must not be more than 50 characters long")
+    //     if (state.length > 50) errors.push("State must not be more than 50 characters long")
+    //     if (country.length > 50) errors.push("Country must be less 50 characters")
+    //     if (name.length > 50) errors.push("Name must not be more than 50 characters long")
+    //     if (description?.length > 1000) errors.push("Description must not be more than 1000 characters long")
+    //     if (price < 0) errors.push("Please provide a valid price")
+    //     if (zipcode.length>20) errors.push("Please provide a valid zip code")
+    //     if (url1.length > 250) errors.push("Please provide a image url.")
+    //     if (url2.length > 250) errors.push("Please provide a image url.")
+    //     if (url3.length > 250) errors.push("Please provide a image url.")
+    //     if (url4.length > 250) errors.push("Please provide a image url.")
+    //     setErrors(validateErrors)
+    //     }, [address, city, state, country, name, description, price, zipcode, url1, url2, url3, url4])
 
 
-
-    useEffect(() => {
-        const validateErrors = [];
-        if (address.length > 200) errors.push("Address must not be more than 200 characters long")
-        if (city.length > 50) errors.push("City must not be more than 50 characters long")
-        if (state.length > 50) errors.push("State must not be more than 50 characters long")
-        if (country.length > 50) errors.push("Country must be less 50 characters")
-        if (name.length > 50) errors.push("Name must not be more than 50 characters long")
-        if (description?.length > 1000) errors.push("Description must not be more than 1000 characters long")
-        if (price < 0) errors.push("Please provide a valid price")
-        if (zipcode.length>20) errors.push("Please provide a valid zip code")
-        if (url1.length > 250) errors.push("Please provide a image url.")
-        if (url2.length > 250) errors.push("Please provide a image url.")
-        if (url3.length > 250) errors.push("Please provide a image url.")
-        if (url4.length > 250) errors.push("Please provide a image url.")
-        setErrors(validateErrors)
-        }, [address, city, state, country, name, description, price, zipcode, url1, url2, url3, url4])
-
-        // useEffect(() => {
-        //     const local
-        // })
-        const handleSubmit = async (e) => {
-            e.preventDefault();
-            const newSpot = {
-              oneSpot:{
-                address,
-                city,
-                state,
-                country,
-                name,
-                price,
-                zipcode,
-                description,
-                userId,
-              },
-              images:{
-                img1:{url:url1, id:spot?.Images[0].id},
-                img2:{url:url2, id:spot?.Images[1].id},
-                img3:{url:url3, id:spot?.Images[2].id},
-                img4:{url:url4, id:spot?.Images[3].id}
-              }
-            }
-            // console.log("i'm newSpot",newSpot)
-            let data;
-            try{
-              data = await dispatch(editSpot(newSpot,spotId));
-            } catch(error) {
-              throw new Error
-            }
-            if (data) {
-              history.push(`/spots/${data?.id}`);
-          }}
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const newSpot = {
+          oneSpot:{
+            address,
+            city,
+            state,
+            country,
+            name,
+            price,
+            zipcode,
+            description,
+            userId,
+          },
+          images:{
+            img1:{url:url1, id:spot?.Images[0].id},
+            img2:{url:url2, id:spot?.Images[1].id},
+            img3:{url:url3, id:spot?.Images[2].id},
+            img4:{url:url4, id:spot?.Images[3].id}
+          }
+        }
+        // console.log("i'm newSpot",newSpot)
+    let errs = [];
+    let data = await dispatch(editSpot(newSpot,spotId))  //response from db via thunk
+    // console.log(data)
+    if (data.errors) { // if data has errors inside
+      const errList = Object.values(data.errors)  // get values from obj
+      const flatErrList = [...errList];  // flat
+      flatErrList.map(each => errs.push(each.msg))  // make it in an array
+      setErrors(errs)  // right now get errors
+    } else {
+      history.push(`/spots/${data.id}`)
+    }
+  }
 
 
 

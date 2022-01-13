@@ -47,6 +47,20 @@ export const fetchApiSpot = (id) => async dispatch => {
       dispatch(getSpot(spot));
 }};
 
+export const deleteOldSpot = (id) => async dispatch => {
+  const res = await csrfFetch(`/api/spots/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+  });
+  // console.log(res);
+  if (res.ok === true) {
+      dispatch(deleteSpot(id))
+  }
+  return res;
+}
+
 export const editSpot = (spot,spotId) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${spotId}/edit`,{
       method: 'PUT',
@@ -55,27 +69,16 @@ export const editSpot = (spot,spotId) => async dispatch => {
       },
       body: JSON.stringify(spot)
     });
+    const resBody = await res.json()
 
-    if (res.ok) {
-      const spot = await res.json();
-      dispatch(addSpot(spot));
+    if (!resBody.errors) {
+      const spot = resBody;
+      await dispatch(addSpot(spot));
       return spot
-}};
-
-
-export const deleteOldSpot = (id) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-    });
-    // console.log(res);
-    if (res.ok === true) {
-        dispatch(deleteSpot(id))
+    } else {
+      return resBody;
     }
-    return res;
-}
+};
 
 
 
@@ -85,15 +88,22 @@ export const addNewSpot = (spot) => async dispatch => {
     body: JSON.stringify(spot)
   });
 
-  if (res.ok) {
-    const spot = await res.json();
+  const resBody = await res.json()
+  // console.log(resBody);
+
+
+  if (!resBody.errors) {
+    const spot = resBody;
     await dispatch(addSpot(spot));
     return spot;
+  } else {
+    return resBody;
   }
-  else{
-    const error = await res.json();
-    return error;
-  }
+  // else{
+  //   const error = await res.json();
+  //   return error;
+  // }
+}
   // const {address,
   //   city,
   //   state,
@@ -132,7 +142,7 @@ export const addNewSpot = (spot) => async dispatch => {
   // });
   // const newSpot = await res.json();
   // dispatch(addSpot(newSpot));
-}
+//}
 
 const initialState = {};
 const spotReducer = (state = initialState, action) => {
@@ -152,7 +162,7 @@ const spotReducer = (state = initialState, action) => {
     case GET_SPOT:
       newState = {...state};
       newState[action.spot.id] = action.spot
-      // console.log("spot", action.spot);
+      console.log("spot", action.spot);
       return newState;
     case DELETE_SPOT:
       newState = {...state};

@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {useHistory} from 'react-router';
 import * as sessionActions from '../../store/session';
 import { NavLink } from 'react-router-dom';
-import NewSpotFormModal from "../NewSpotFormModal";
 import './Navigation.css';
 
 
@@ -62,7 +61,6 @@ function ProfileButton({ user }) {
         <div>
           <div className="profile-dropdown">
 
-            {/* <NewSpotFormModal/> */}
             <div className='manageSpots' onClick={goToAdd}>Add a spot</div>
             <div className='manageSpots' onClick={manageSpots}>Manage spots</div>
             <div className='dropdown_logout' onClick={logout}>Log Out</div>

@@ -10,8 +10,8 @@ function UserProfile(user) {
     const sessionUser = useSelector((state) => state.session.user);
     const dispatch = useDispatch();
     const history = useHistory();
-    const {id} = useParams();
-    const userId = +id;
+    const {id} = useParams();  // a string
+    const userId = +id;  // make a number
     const spots = useSelector(state => state.spot);
     const spotsArr = Object.values(spots);
     const userSpotsArr = spotsArr.filter((spots) => spots.userId === +userId);
