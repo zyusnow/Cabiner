@@ -11,6 +11,8 @@ import SpotsPage from "./components/SpotsPage";
 import SpotPage from "./components/SpotPage";
 import AddPage from "./components/AddPage";
 import EditPage from "./components/EditPage";
+import UserProfile from "./components/UserProfilePage";
+
 
 
 function App() {
@@ -37,6 +39,12 @@ function App() {
         <Route exact path='/spots/:id'>
           <SpotPage />
         </Route >
+        <Route exact path='/users/:id/spots'>
+          <UserProfile />
+        </Route >
+        <Route exact path='/spots/:id/edit'>
+          <EditPage/>
+        </Route>
         <Route>
             <h1> Page Not Found</h1>
         </Route>
@@ -45,9 +53,6 @@ function App() {
     </>
   )}
 
-        // <Route exact path='/spots/:id/edit'>
-        //   <EditPage/>
-        // </Route>
 
 
 export default App;

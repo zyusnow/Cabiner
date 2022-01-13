@@ -10,42 +10,54 @@ const router = express.Router();
 // const { setTokenCookie, requireAuth } = require('../../utils/auth');
 
 const validateSpot = [
-    check('address')
+    check('oneSpot.address')
       .isLength({ max: 200 })
       .exists({ checkFalsy: true })
       .withMessage("Address must not be more than 200 characters long"),
-    check('city')
+    check('oneSpot.city')
         .isLength({ max: 50 })
         .exists({ checkFalsy: true })
         .withMessage("City must not be more than 50 characters long"),
-    check('state')
+    check('oneSpot.state')
         .isLength({ max: 50 })
         .exists({ checkFalsy: true })
         .withMessage("State must not be more than 50 characters long"),
-    check('country')
+    check('oneSpot.country')
         .isLength({ max: 50 })
         .exists({ checkFalsy: true })
         .withMessage("Country must not be more than 50 characters long"),
-    check('name')
+    check('oneSpot.name')
         .isLength({ max: 50 })
         .exists({ checkFalsy: true })
         .withMessage("Title must not be more than 50 characters long"),
-    check('pirce')
+    check('oneSpot.price')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a price.'),
-    check('zipcode')
+    check('oneSpot.zipcode')
         .isLength({ max: 20 })
         .exists({ checkFalsy: true })
         .withMessage('Zipcode must not be more than 20 characters long'),
-    check('description')
+    check('oneSpot.description')
         .isLength({ max: 1000 })
         .exists({ checkFalsy: true })
         .withMessage("Description must not be more than 1000 characters long"),
-    check('url1')
+    check('images.url1')
         .isLength({ max: 250 })
         .exists({ checkFalsy: true })
         .withMessage("Please provide a image url."),
-    //handleValidationErrors,
+    check('images.url2')
+        .isLength({ max: 250 })
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide a image url."),
+    check('images.url3')
+        .isLength({ max: 250 })
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide a image url."),
+    check('images.url4')
+        .isLength({ max: 250 })
+        .exists({ checkFalsy: true })
+        .withMessage("Please provide a image url."),
+    handleValidationErrors,
   ];
 
 
@@ -132,7 +144,7 @@ router.delete('/:id(\\d+)',asyncHandler(async function(req, res){
         where: {spotId}
     })
     await spot.destroy();
-    return res.json({message: "Delete sucessfully"})
+    return res.json({})
 }))
 
 // ---------------------post one spot ---------------------

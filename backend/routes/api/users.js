@@ -49,7 +49,7 @@ router.post(
 router.get('/:userId/spots', asyncHandler(async function(req, res){
   const userId = parseInt(req.params.userId, 10);
   const spots = await Spot.findAll({where: {userId}})
-  return res.json({spots});
+  return res.json(spots);
 }))
 
 

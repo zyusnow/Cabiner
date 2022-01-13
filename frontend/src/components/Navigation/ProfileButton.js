@@ -64,7 +64,7 @@ function ProfileButton({ user }) {
 
             {/* <NewSpotFormModal/> */}
             <div className='manageSpots' onClick={goToAdd}>Add a spot</div>
-            {/* <div className='manageSpots' onClick={manageSpots}>Manage spots</div> */}
+            <div className='manageSpots' onClick={manageSpots}>Manage spots</div>
             <div className='dropdown_logout' onClick={logout}>Log Out</div>
           </div>
         </div>

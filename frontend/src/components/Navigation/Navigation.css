@@ -5,12 +5,13 @@
 .nav_container{
     font-size: 26px;
     margin-top: 30px;
+
 }
 /* --------------nav left part-------------- */
 .nav_left{
     display: flex;
     align-items: center;
-    width:300px
+    width:300px;
 }
 
 .nav_head{
@@ -73,6 +74,7 @@
     right: 45px;
     box-shadow: 0px 8px 20px rgba(110, 110, 110, 0.25);
     padding-top: 20px;
+    z-index: 100;
 }
 
 .profile-dropdown > div {
